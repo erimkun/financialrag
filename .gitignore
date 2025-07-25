@@ -1,0 +1,26 @@
+# dependencies
+node_modules/
+__pycache__/
+
+# build output
+dist/
+build/
+
+# environment variables
+.env
+.env.*
+
+# IDE/editor settings
+.vscode/
+.idea/
+*.suo
+*.ntvs*
+*.njsproj
+*.sln
+
+# logs
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+
+# OS

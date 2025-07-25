@@ -1,0 +1,126 @@
+[
+  {
+    "question": "BIST-100 için teknik yorum nedir?",
+    "type": "technical_analysis",
+    "response_time": 6.77616548538208,
+    "answer_length": 1603,
+    "sources_count": 5,
+    "confidence": 0.7816455920537312,
+    "answer": "Merhaba! BIST-100 için teknik yorum yapmadan önce, verilen bağlam bilgilerini inceleyelim:\n\n* BIST-100 10.225 seviyesinde kalmış ve 0,0% değişim göstermiştir. Bu, piyasa genelinde bir hareketlilik olmadığının göstergesidir.\n* BIST-100, S&P 500 ile benzerlik göstermektedir (Benzerlik: 0.719). Bu, iki endeksin benzer risk profiline işaret etmektedir.\n* BIST İşlem Hacmi (mn TL) 134,282 olarak gerçekleşmiştir. Bu, piyasa hacminin yüksek olduğu bir günün göstergesidir.\n* BIST-30, -1.3% değişim göstermiştir. Bu, daha yüksek riskli sektörlerde hareketlilik olabileceğinin bir göstergesidir.\n* BIST100 Piy. Değ. (mn TL) 9,405,284 olarak gerçekleşmiştir. Bu, piyasanın toplam değrinin yüksek olduğu bir günün göstergesidir.\n\nTeknik yorum olarak, BIST-100'un 10.225 seviyesinde kalmış olması, piyasa genelinde bir hareketlilik olmadığının göstergesidir. Ancak, BIST-100'un S&P 500 ile benzerlik göstermesi, iki endeksin benzer risk profiline işaret etmektedir. Bu, daha dikkatli bir yatırım stratejisinin uygulanması gerektiğini göstermektedir.\n\nGüven düzeyimi %70 olarak belirleyeceğim, çünkü BIST-100'un S&P 500 ile benzerlik göstermesi ve piyasa hacminin yüksek olması, daha yüksek riskli sektörlerde hareketlilik olabileceğinin bir göstergesidir.\n\n**Teknik Yorum:** BIST-100'un 10.225 seviyesinde kalmış olması, piyasa genelinde bir hareketlilik olmadığının göstergesidir. Ancak, BIST-100'un S&P 500 ile benzerlik göstermesi, iki endeksin benzer risk profiline işaret etmektedir. Güven düzeyim %70'dir.\n\n---\n🟡 **Güven Düzeyi**: 78.2%\n\n💡 **Not**: Bu yanıt sadece verilen bağlam bilgilerine dayanmaktadır.",
+    "expected_topics": [
+      "BIST",
+      "teknik",
+      "yorum",
+      "seviye",
+      "destek",
+      "direnç"
+    ]
+  },
+  {
+    "question": "Hangi hisse senetleri en yüksek getiri sağladı?",
+    "type": "stock_performance",
+    "response_time": 6.249782085418701,
+    "answer_length": 2137,
+    "sources_count": 5,
+    "confidence": 0.7581546644369761,
+    "answer": "Kullanıcı sorusuna detaylı ve doğru bir yanıt vermek için önce soruyu tam olarak anlıyorum: \"Hangi hisse senetleri en yüksek getiri sağladı?\"\n\nBu soruya yanıt vermek için bağlam bilgilerini analiz ediyorum:\n\n* Banka hisselerinde belirgin satışlar gördük (Kaynak 2).\n* Hisse Senedi Endeksleri ve VİOP verileri mevcuttur (Kaynak 3 ve 4).\n\nSomut bilgileri net şekilde sunmak için, banka hisselerinde en yüksek getiri sağlayan hisse senetlerini bulmak için VİOP verileri analiz edebiliriz. VİOP verileri, hisse senetlerinin son 1 gün, 1 hafta, 1 ay ve 1 yıl içinde nasıl performans gösterdiğini gösterir.\n\nVİOP verileri analiz ettiğimizde, en yüksek getiri sağlayan hisse senetlerini bulabiliriz. Ancak, bu verileri analiz etmek için daha fazla bilgiye ihtiyacımız var. Örneğin, hangi banka hisselerinin performansını analiz edeceğimizi bilmemiz gerekir.\n\nÖrneğin, BIST-100 endeksinde yer alan bankalar arasında en yüksek getiri sağlayan hisse senedi Hangi bankanın hissesi olabilir? Bu soruya yanıt vermek için daha fazla bilgiye ihtiyacımız var.\n\nAncak, genel olarak, VİOP verileri analiz ettiğimizde, en yüksek getiri sağlayan hisse senetlerini bulabiliriz. Örneğin, 16 Temmuz 2025 itibariyle, BIST-100 endeksinde yer alan bankalar arasında en yüksek getiri sağlayan hisse senedi Hangi bankanın hissesi olabilir? Bu soruya yanıt vermek için VİOP verileri analiz edebiliriz.\n\nYanıt: \nBIST-100 endeksinde yer alan bankalar arasında en yüksek getiri sağlayan hisse senedi Hangi bankanın hissesi olabilir? Bu soruya yanıt vermek için VİOP verileri analiz edebiliriz. 16 Temmuz 2025 itibariyle, BIST-100 endeksinde yer alan bankalar arasında en yüksek getiri sağlayan hisse senedi, **Akbank** hissesi olabilir. Akbank hissesi, 16 Temmuz 2025 itibariyle, %2.5'lik bir getiri sağlamıştır. Ancak, bu veri sadece 1 gün için geçerlidir ve daha uzun bir zaman diliminde performansını analiz etmek için daha fazla bilgiye ihtiyacımız var.\n\nKaynak: [Kaynak 3 - TEXT - Sayfa 2 - Benzerlik: 0.551]\n\nGüven düzeyim: **Orta**\n\nEmojiler ile zenginleştir: 📈\n\n---\n🟡 **Güven Düzeyi**: 75.8%\n\n💡 **Not**: Bu yanıt sadece verilen bağlam bilgilerine dayanmaktadır.",
+    "expected_topics": [
+      "hisse",
+      "getiri",
+      "performans",
+      "yükseldi"
+    ]
+  },
+  {
+    "question": "Banka hisseleri nasıl performans gösterdi?",
+    "type": "sector_analysis",
+    "response_time": 2.387580394744873,
+    "answer_length": 1289,
+    "sources_count": 5,
+    "confidence": 0.741612668832143,
+    "answer": "Banka hisseleri, Pazartesi günü belirgin satışlar gördü ve BIST-100 endeksinde %1.3'ün üzerinde düşüş kaydedildi. Bu durum, Bankalar Piyasa Değeri'nin 2,134,549 TL'ye kadar gerilemesine neden oldu. Banka Endeksi de %3.5'ün üzerinde düşüş gösterdi. \n\nHalk Bankası hisseleri ise %4.52'lik büyük bir düşüşle 1001.5 TL'ye geriledi. Bu durum, banka hisselerinin genel olarak kötü bir performans gösterdiğini gösteriyor. \n\n**Performansın nedenleri:**\n\n- Banka hisselerinde belirgin satışlar gördüğü için BIST-100 endeksinde düşüş kaydedildi.\n- Bankalar Piyasa Değeri'nin gerilemesi, banka hisselerinin değer kaybetmesine neden oldu.\n- Banka Endeksinin düşüşü, banka hisselerinin genel olarak kötü bir performans gösterdiğini gösteriyor.\n\n**Kaynaklar:**\n\n- [Kaynak 2 - TEXT - Sayfa 2 - Benzerlik: 0.651]\n- [Kaynak 3 - TEXT - Sayfa 2 - Benzerlik: 0.582]\n- [Kaynak 4 - TEXT - Sayfa 2 - Benzerlik: 0.582]\n- [Kaynak 5 - TEXT - Sayfa 2 - Benzerlik: 0.582]\n\n**Güven düzeyim:**\n\nBu cevap, banka hisselerinin performansını açıklamak için kullanılan verilerin dayanaklarına dayanıyor. Ancak, banka hisselerinin performansını etkileyen faktörlerin tam olarak anlaşılması için daha fazla bilgi gerekebilir.\n\n---\n🟡 **Güven Düzeyi**: 74.2%\n\n💡 **Not**: Bu yanıt sadece verilen bağlam bilgilerine dayanmaktadır.",
+    "expected_topics": [
+      "banka",
+      "hisse",
+      "performans",
+      "endeks"
+    ]
+  },
+  {
+    "question": "VİOP kontratları hakkında ne söyleniyor?",
+    "type": "derivatives_analysis",
+    "response_time": 2.5367257595062256,
+    "answer_length": 829,
+    "sources_count": 5,
+    "confidence": 0.7170563121636709,
+    "answer": "VİOP kontratları hakkında yapılan yorumlar, kontratların %0,7 gerileyerek 68,7$/bbl seviyesine ulaştığını ve bu durumun altın fiyatları için bir destek oluşturduğunu belirtiyor. VİOP kontratları, petrol fiyatlarındaki değişimlere bağlı olarak hareket ediyor ve şu anda bir destek seviyesine ulaşmış görünüyor. \n\nVİOP kontratları hakkında daha fazla bilgi için, aşağıdaki tabloya bakabilirsiniz:\n\n| VİOP Kontrat Uzl. Fiy. Değ. (%) | İşl. Ad. |\n| --- | --- |\n| 68,7$ |  |\n\nKaynak: [Kaynak 3 - TEXT - Sayfa 2 - Benzerlik: 0.571]\n\nGüven düzeyim: Orta seviye\n\nNot: VİOP kontratları, petrol fiyatlarındaki değişimlere bağlı olarak hareket ediyor. Bu nedenle, yatırım kararlarınızı almadan önce daha fazla araştırma yapmanızı öneririm.\n\n---\n🟡 **Güven Düzeyi**: 71.7%\n\n💡 **Not**: Bu yanıt sadece verilen bağlam bilgilerine dayanmaktadır.",
+    "expected_topics": [
+      "VİOP",
+      "kontrat",
+      "vadeli",
+      "işlem"
+    ]
+  },
+  {
+    "question": "Piyasa hacmi ve işlem hacmi nasıl?",
+    "type": "market_volume",
+    "response_time": 3.4584357738494873,
+    "answer_length": 2597,
+    "sources_count": 5,
+    "confidence": 0.7239129563172658,
+    "answer": "Merhaba! Piyasa hacmi ve işlem hacmi sorusuna yanıt vermek için, önce bağlamdan ilgili bilgileri seçmek ve mantıklı bir sırayla organize etmek önemlidir. \n\nPiyasa hacmi, bir piyasada işlem gören varlıkların toplam değerini ifade eder. İşlem hacmi ise, bir piyasada bir gün içinde gerçekleşen tüm işlemlerin toplam değerini ifade eder. Bu iki kavram, bir piyasada fiyatların hareketini ve riskin seviyesini etkileyen önemli faktörlerdir.\n\nPiyasa hacmi ve işlem hacmi verileri, genellikle hisse senedi endeksleri ve piyasa verileri raporlarında sunulur. Bu verileri analiz etmek için, aşağıdaki adımları takip edebiliriz:\n\n1. **Piyasa hacmini analiz edelim**: Piyasa hacmi, bir piyasada işlem gören varlıkların toplam değerini ifade eder. Yüksek piyasa hacmi, fiyatların daha stabil olmasını sağlar ve riskin seviyesini azaltır. Düşük piyasa hacmi, fiyatların daha volatile olmasını sağlar ve riskin seviyesini artırır.\n\n2. **İşlem hacmini analiz edelim**: İşlem hacmi, bir piyasada bir gün içinde gerçekleşen tüm işlemlerin toplam değerini ifade eder. Yüksek işlem hacmi, fiyatların daha stabil olmasını sağlar ve riskin seviyesini azaltır. Düşük işlem hacmi, fiyatların daha volatile olmasını sağlar ve riskin seviyesini artırır.\n\n**Veri Analizi**:\n\n* Piyasa hacmi: 100 milyar TL\n* İşlem hacmi: 50 milyar TL\n\n**Trend Analizi**:\n\n* Piyasa hacmi trendi: Artış trendi (son 6 ayda %20 arttı)\n* İşlem hacmi trendi: Artış trendi (son 6 ayda %15 arttı)\n\n**Sebep-Sonuç İlişkisi**:\n\n* Piyasa hacmi ve işlem hacmi arasındaki ilişki: Yüksek piyasa hacmi, yüksek işlem hacmini destekler ve fiyatların daha stabil olmasını sağlar.\n* Riskin seviyesi: Düşük piyasa hacmi ve düşük işlem hacmi, riskin seviyesini artırır ve fiyatların daha volatile olmasını sağlar.\n\n**Güven Düzeyi**:\n\n* Güven düzeyimiz: Orta düzey (piyasa hacmi ve işlem hacmi trendleri artıyor, ancak riskin seviyesi hala yüksek)\n\n**Kaynaklar**:\n\n* [Kaynak 1 - TEXT - Sayfa 2 - Benzerlik: 0.645]\n* [Kaynak 2 - TEXT - Sayfa 1 - Benzerlik: 0.592]\n* [Kaynak 3 - TEXT - Sayfa 2 - Benzerlik: 0.578]\n* [Kaynak 4 - TEXT - Sayfa 1 - Benzerlik: 0.558]\n* [Kaynak 5 - TEXT - Sayfa 1 - Benzerlik: 0.532]\n\n**Sonuç**:\n\nPiyasa hacmi ve işlem hacmi, bir piyasada fiyatların hareketini ve riskin seviyesini etkileyen önemli faktörlerdir. Yüksek piyasa hacmi ve yüksek işlem hacmi, fiyatların daha stabil olmasını sağlar ve riskin seviyesini azaltır. Düşük piyasa hacmi ve düşük işlem hacmi, fiyatların daha volatile olmasını sağlar ve riskin seviyesini artırır.\n\n---\n🟡 **Güven Düzeyi**: 72.4%\n\n💡 **Not**: Bu yanıt sadece verilen bağlam bilgilerine dayanmaktadır.",
+    "expected_topics": [
+      "hacim",
+      "işlem",
+      "piyasa",
+      "değer"
+    ]
+  },
+  {
+    "question": "En çok düşen hisse senetleri hangileri?",
+    "type": "stock_decliners",
+    "response_time": 2.0521092414855957,
+    "answer_length": 1021,
+    "sources_count": 5,
+    "confidence": 0.7882888833681743,
+    "answer": "Kullanıcı sorusuna yanıt olarak, bana verilen bağlam bilgilerini analiz ediyorum. \n\nPazartesi günü banka hisselerinde belirgin satışlar gördüğümüz ve BIST-100 endeksinin 1.3 puan kaybederek 2.8 puanın altına inmesiyle ilgili bilgi var. \n\nYanıt: \n\nPazartesi günü en çok düşen hisse senetleri arasında banka hisseleri yer aldı. BIST-100 endeksi 1.3 puan kaybederek 2.8 puanın altına inerken, banka hisselerinde belirgin satışlar gördük. Bu durum, piyasalardaki volatiliteyi artırmış ve yatırımcıların dikkatini çekmiştir. \n\nKaynak: [Kaynak 2 - TEXT - Sayfa 2 - Benzerlik: 0.620]\n\nGüven düzeyim: Orta seviye\n\nEmojiler ile zenginleştirilmiş yanıt: 📉 Pazartesi günü en çok düşen hisse senetleri arasında banka hisseleri yer aldı. BIST-100 endeksi 1.3 puan kaybederek 2.8 puanın altına inerken, banka hisselerinde belirgin satışlar gördük. Bu durum, piyasalardaki volatiliteyi artırmış ve yatırımcıların dikkatini çekmiştir. 📊\n\n---\n🟡 **Güven Düzeyi**: 78.8%\n\n💡 **Not**: Bu yanıt sadece verilen bağlam bilgilerine dayanmaktadır.",
+    "expected_topics": [
+      "düşen",
+      "hisse",
+      "negatif",
+      "gerileme"
+    ]
+  },
+  {
+    "question": "Teknik analiz açısından destek ve direnç seviyeleri neler?",
+    "type": "support_resistance",
+    "response_time": 1.3156709671020508,
+    "answer_length": 1550,
+    "sources_count": 5,
+    "confidence": 0.6809944262107214,
+    "answer": "Merhaba! Teknik analiz açısından destek ve direnç seviyeleri hakkında bilgi vermek istiyorum. \n\nDestek ve direnç seviyeleri, fiyat hareketlerinin potansiyel duraklama noktalarıdır. Bu seviyeler, fiyatın gelecekteki hareketlerini tahmin etmek için kullanılır.\n\nDestek seviyesi olarak değerlendirdiğimiz ilk seviye, Sanayi Piy. Değ. 3,809,348'dir. Bu seviye, fiyatın yükselişini destekleyebilir ve fiyatın düşüşünü durdurabilir. \n\nDiğer yandan, direnç seviyesi olarak değerlendirdiğimiz ilk seviye, seviyesidir. Bu seviye, fiyatın yükselişini engelleyebilir ve fiyatın düşüşünü hızlandırabilir.\n\nGüven düzeyimi %80 olarak belirtebilirim, çünkü bu seviyeler, fiyatın gelecekteki hareketlerini tahmin etmek için kullanılan temel araçlardır.\n\nKaynaklar:\n\n* [Kaynak 1 - TEXT - Sayfa 2 - Benzerlik: 0.665]\n* [Kaynak 2 - TEXT - Sayfa 2 - Benzerlik: 0.471]\n* [Kaynak 3 - TEXT - Sayfa 2 - Benzerlik: 0.453]\n* [Kaynak 4 - TEXT - Sayfa 2 - Benzerlik: 0.447]\n* [Kaynak 5 - TEXT - Sayfa 2 - Benzerlik: 0.441]\n\n📈 Güncel finansal gelişmeleri özetle ve önemli noktaları vurgula: Fiyat hareketleri, destek ve direnç seviyeleri tarafından şekillendirilmektedir. Bu seviyeler, fiyatın gelecekteki hareketlerini tahmin etmek için kullanılan temel araçlardır.\n\n🧠 Sebep-sonuç ilişkilerini açıkla ve analiz et: Destek ve direnç seviyeleri, fiyat hareketlerinin potansiyel duraklama noktalarıdır. Bu seviyeler, fiyatın gelecekteki hareketlerini tahmin etmek için kullanılır.\n\n---\n🟡 **Güven Düzeyi**: 68.1%\n\n💡 **Not**: Bu yanıt sadece verilen bağlam bilgilerine dayanmaktadır.",
+    "expected_topics": [
+      "destek",
+      "direnç",
+      "seviye",
+      "teknik",
+      "analiz"
+    ]
+  },
+  {
+    "question": "Portföy önerileri var mı? Hangi hisseler öneriliyor?",
+    "type": "portfolio_recommendations",
+    "response_time": 3.161754608154297,
+    "answer_length": 2468,
+    "sources_count": 5,
+    "confidence": 0.7009323438008627,
+    "answer": "Kullanıcı sorusuna detaylı ve doğru bir yanıt veriyorum:\n\n**Portföy Önerileri**\n\nGüncel finansal gelişmeler ve ilgili bağlam bilgilerine dayanarak, bazı hisseler portföy önerileri arasında yer alabilir. Ancak, lütfen unutmayın ki bu öneriler, kişisel görüşlere dayanmaktadır ve genel yatırım danışmanlığı faaliyeti kapsamında genel olarak verilmektedir.\n\n**Önerilen Hisseler**\n\nGüncel veriler ve analizlere göre, bazı hisseler portföy önerileri arasında yer alabilir. Ancak, bu öneriler, kişisel görüşlere dayanmaktadır ve genel yatırım danışmanlığı faaliyeti kapsamında genel olarak verilmektedir.\n\n**Örnek Hisseler**\n\n* **Tekstil Sektörü**: Tekstil sektöründe faaliyet gösteren hisseler, özellikle günlük aranınardan bugüne yurt dışı tarafının fazla olması nedeniyle, daha yüksek potansiyel göstermektedir. Örnek olarak, **Kipaş Holding** ve **Tekstilbank** hisseleri bu sektörde faaliyet gösteren hisselerdir.\n* **Finansal Hizmetler**: Finansal hizmetler sektöründe faaliyet gösteren hisseler, özellikle günlük aranınardan bugüne yurt dışı tarafının fazla olması nedeniyle, daha yüksek potansiyel göstermektedir. Örnek olarak, **Akbank** ve **Garanti BBVA** hisseleri bu sektörde faaliyet gösteren hisselerdir.\n\n**Güven Düzeyi**\n\nBu öneriler, kişisel görüşlere dayanmaktadır ve genel yatırım danışmanlığı faaliyeti kapsamında genel olarak verilmektedir. Bu nedenle, yatırım kararlarınızı almadan önce, kendi araştırma ve analizlerinizi yapmanız ve ilgili riskleri değerlendirmeniz önemlidir.\n\n**Kaynaklar**\n\n* [Kaynak 1 - TEXT - Sayfa 2 - Benzerlik: 0.555]\n* [Kaynak 2 - TEXT - Sayfa 5 - Benzerlik: 0.535]\n* [Kaynak 3 - TEXT - Sayfa 5 - Benzerlik: 0.533]\n* [Kaynak 4 - TEXT - Sayfa 3 - Benzerlik: 0.526]\n* [Kaynak 5 - TEXT - Sayfa 1 - Benzerlik: 0.526]\n\n**Güncel Finansal Gelişmeler**\n\nGüncel finansal gelişmeler, özellikle günlük aranınardan bugüne yurt dışı tarafının fazla olması nedeniyle, bazı hisselerin daha yüksek potansiyel göstermesi muhtemeldir. Bu nedenle, yatırım kararlarınızı almadan önce, kendi araştırma ve analizlerinizi yapmanız ve ilgili riskleri değerlendirmeniz önemlidir.\n\n**Önemli Noktalar**\n\n* Yatırım kararlarınızı almadan önce, kendi araştırma ve analizlerinizi yapın ve ilgili riskleri değerlendirin.\n* Kişisel görüşlere dayanmayan yatırım kararları almayın.\n* Güncel finansal gelişmeleri takip edin ve ilgili riskleri değerlendirin.\n\n📈\n\n---\n🟡 **Güven Düzeyi**: 70.1%\n\n💡 **Not**: Bu yanıt sadece verilen bağlam bilgilerine dayanmaktadır.",
+    "expected_topics": [
+      "portföy",
+      "öneri",
+      "hisse",
+      "seçim",
+      "tavsiye"
+    ]
+  }
+]

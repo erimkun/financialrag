@@ -1,0 +1,10 @@
+pdfplumber
+pdf2image
+PyMuPDF
+Pillow
+opencv-python
+numpy
+pandas
+concurrent.futures
+requests
+pytesseract 

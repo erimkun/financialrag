@@ -1,0 +1,92 @@
+{
+  "extracted_data\\page_1_hq.png": {
+    "chart_type": "bar_chart",
+    "title": null,
+    "x_axis_label": null,
+    "y_axis_label": null,
+    "data_points": [],
+    "confidence": 0.8,
+    "extracted_text": []
+  },
+  "extracted_data\\page_1_standard.png": {
+    "chart_type": "pie_chart",
+    "title": null,
+    "x_axis_label": null,
+    "y_axis_label": null,
+    "data_points": [],
+    "confidence": 0.8,
+    "extracted_text": []
+  },
+  "extracted_data\\page_2_hq.png": {
+    "chart_type": "bar_chart",
+    "title": null,
+    "x_axis_label": null,
+    "y_axis_label": null,
+    "data_points": [],
+    "confidence": 0.8,
+    "extracted_text": []
+  },
+  "extracted_data\\page_2_standard.png": {
+    "chart_type": "pie_chart",
+    "title": null,
+    "x_axis_label": null,
+    "y_axis_label": null,
+    "data_points": [],
+    "confidence": 0.8,
+    "extracted_text": []
+  },
+  "extracted_data\\page_3_hq.png": {
+    "chart_type": "bar_chart",
+    "title": null,
+    "x_axis_label": null,
+    "y_axis_label": null,
+    "data_points": [],
+    "confidence": 0.8,
+    "extracted_text": []
+  },
+  "extracted_data\\page_3_standard.png": {
+    "chart_type": "pie_chart",
+    "title": null,
+    "x_axis_label": null,
+    "y_axis_label": null,
+    "data_points": [],
+    "confidence": 0.8,
+    "extracted_text": []
+  },
+  "extracted_data\\page_4_hq.png": {
+    "chart_type": "pie_chart",
+    "title": null,
+    "x_axis_label": null,
+    "y_axis_label": null,
+    "data_points": [],
+    "confidence": 0.8,
+    "extracted_text": []
+  },
+  "extracted_data\\page_4_standard.png": {
+    "chart_type": "pie_chart",
+    "title": null,
+    "x_axis_label": null,
+    "y_axis_label": null,
+    "data_points": [],
+    "confidence": 0.8,
+    "extracted_text": []
+  },
+  "extracted_data\\page_5_hq.png": {
+    "chart_type": "pie_chart",
+    "title": null,
+    "x_axis_label": null,
+    "y_axis_label": null,
+    "data_points": [],
+    "confidence": 0.8,
+    "extracted_text": []
+  },
+  "extracted_data\\page_5_standard.png": {
+    "chart_type": "pie_chart",
+    "title": null,
+    "x_axis_label": null,
+    "y_axis_label": null,
+    "data_points": [],
+    "confidence": 0.8,
+    "extracted_text": []
+  }
+}

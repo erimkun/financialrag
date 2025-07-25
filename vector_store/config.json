@@ -1,0 +1,13 @@
+{
+  "model_name": "sentence-transformers/paraphrase-multilingual-mpnet-base-v2",
+  "index_type": "flat",
+  "embedding_dim": 768,
+  "total_chunks": 611,
+  "performance_stats": {
+    "embedding_time": 17,
+    "indexing_time": 0,
+    "search_time": 0,
+    "chunks_processed": 611,
+    "searches_performed": 5
+  }
+}
