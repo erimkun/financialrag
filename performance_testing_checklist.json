@@ -1,0 +1,84 @@
+{
+  "test_info": {
+    "created": "2025-07-27T15:33:56.932126",
+    "purpose": "Performance testing on different devices",
+    "tools": [
+      "Browser DevTools",
+      "Lighthouse",
+      "WebPageTest"
+    ]
+  },
+  "performance_metrics": {
+    "core_web_vitals": {
+      "LCP": {
+        "metric": "Largest Contentful Paint",
+        "target": "< 2.5s",
+        "description": "Loading performance"
+      },
+      "FID": {
+        "metric": "First Input Delay",
+        "target": "< 100ms",
+        "description": "Interactivity"
+      },
+      "CLS": {
+        "metric": "Cumulative Layout Shift",
+        "target": "< 0.1",
+        "description": "Visual stability"
+      }
+    },
+    "custom_metrics": {
+      "api_response_time": {
+        "target": "< 3s for queries",
+        "measurement": "Time from question to answer"
+      },
+      "file_upload_speed": {
+        "target": "< 5s for typical PDFs",
+        "measurement": "Upload completion time"
+      },
+      "bundle_size": {
+        "target": "< 1MB total JS",
+        "measurement": "Frontend bundle size"
+      }
+    }
+  },
+  "test_scenarios": [
+    {
+      "test": "Large file upload performance",
+      "steps": [
+        "Upload 10MB+ PDF file",
+        "Monitor upload progress",
+        "Check memory usage",
+        "Test concurrent uploads"
+      ],
+      "devices": [
+        "Desktop",
+        "Mobile",
+        "Tablet"
+      ]
+    },
+    {
+      "test": "Query response under load",
+      "steps": [
+        "Send multiple queries rapidly",
+        "Test with long documents",
+        "Monitor network latency",
+        "Check error handling"
+      ],
+      "devices": [
+        "All devices"
+      ]
+    },
+    {
+      "test": "Memory usage monitoring",
+      "steps": [
+        "Use browser DevTools Memory tab",
+        "Upload multiple files",
+        "Send many queries",
+        "Check for memory leaks"
+      ],
+      "devices": [
+        "Desktop primarily"
+      ]
+    }
+  ]
+}

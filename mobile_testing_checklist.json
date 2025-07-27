@@ -1,0 +1,113 @@
+{
+  "test_info": {
+    "created": "2025-07-27T15:33:56.929088",
+    "purpose": "Mobile device compatibility testing",
+    "instructions": "Perform these tests on different mobile devices/simulators"
+  },
+  "device_categories": {
+    "mobile_phones": {
+      "ios": [
+        "iPhone 14/15 (Safari)",
+        "iPhone 12/13 (Safari)",
+        "iPhone SE (Safari)"
+      ],
+      "android": [
+        "Samsung Galaxy S22+ (Chrome)",
+        "Google Pixel 7 (Chrome)",
+        "OnePlus 9 (Chrome)"
+      ]
+    },
+    "tablets": {
+      "ios": [
+        "iPad Air (Safari)",
+        "iPad Pro (Safari)"
+      ],
+      "android": [
+        "Samsung Galaxy Tab (Chrome)"
+      ]
+    }
+  },
+  "test_scenarios": {
+    "layout_responsive": {
+      "priority": "HIGH",
+      "tests": [
+        {
+          "test": "Dashboard layout adapts to screen size",
+          "steps": [
+            "Open frontend on mobile device",
+            "Check if tabs are stacked vertically",
+            "Verify all content is visible",
+            "Test landscape/portrait rotation"
+          ],
+          "expected": "UI elements adjust properly to screen size"
+        },
+        {
+          "test": "PDF upload area is touch-friendly",
+          "steps": [
+            "Navigate to Upload tab",
+            "Check drag-drop area size",
+            "Test touch interactions",
+            "Verify file selection works"
+          ],
+          "expected": "Easy file selection on mobile"
+        },
+        {
+          "test": "Chat interface is mobile-optimized",
+          "steps": [
+            "Open Chat tab",
+            "Check input field size",
+            "Test suggestion buttons",
+            "Verify scrolling works"
+          ],
+          "expected": "Chat is usable on touch devices"
+        }
+      ]
+    },
+    "touch_interactions": {
+      "priority": "HIGH",
+      "tests": [
+        {
+          "test": "Touch targets are adequately sized",
+          "steps": [
+            "Test all buttons and links",
+            "Check minimum 44px touch targets",
+            "Verify no accidental clicks"
+          ],
+          "expected": "All interactive elements are easily tappable"
+        },
+        {
+          "test": "Scrolling performance",
+          "steps": [
+            "Test vertical scrolling in chat",
+            "Test horizontal scrolling if any",
+            "Check for smooth animations"
+          ],
+          "expected": "Smooth scrolling without lag"
+        }
+      ]
+    },
+    "mobile_specific_features": {
+      "priority": "MEDIUM",
+      "tests": [
+        {
+          "test": "File upload from mobile gallery",
+          "steps": [
+            "Try uploading from photo gallery",
+            "Test camera capture if applicable",
+            "Check file format support"
+          ],
+          "expected": "Mobile file selection works"
+        },
+        {
+          "test": "Virtual keyboard interaction",
+          "steps": [
+            "Focus on chat input",
+            "Check if keyboard covers content",
+            "Test typing experience"
+          ],
+          "expected": "Keyboard doesn't break layout"
+        }
+      ]
+    }
+  }
+}

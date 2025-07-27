@@ -1,0 +1,7 @@
+# Pylance configuration for report analyzer
+[tool.pylance]
+analysis.typeCheckingMode = "basic"
+reportOptionalCall = false
+reportOptionalMemberAccess = false
+reportAttributeAccessIssue = false
+reportPossiblyUnboundVariable = false

@@ -19,7 +19,7 @@ except ImportError:
 class GroqOptimizedSimpleRAG:
     """Simple optimized Groq RAG system with Turkish prompts"""
     
-    def __init__(self, groq_api_key: str):
+    def __init__(self, groq_api_key: str, specific_analysis_file: Optional[str] = None):
         self.groq_client = Groq(api_key=groq_api_key)
         self.embedding_model = SentenceTransformer('sentence-transformers/paraphrase-multilingual-mpnet-base-v2')
         
@@ -29,6 +29,7 @@ class GroqOptimizedSimpleRAG:
         # Load extracted data
         self.chunks = []
         self.faiss_index = None
+        self.specific_analysis_file = specific_analysis_file
         self._load_extracted_data()
         
         # Performance tracking
@@ -43,20 +44,29 @@ class GroqOptimizedSimpleRAG:
     def _load_extracted_data(self):
         """Load extracted data from integrated analyzer"""
         try:
-            # Load from analysis output
-            analysis_dir = "analysis_output"
+            # Load from analysis output - get correct path relative to project root
+            project_root = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
+            analysis_dir = os.path.join(project_root, "analysis_output")
+            
             if not os.path.exists(analysis_dir):
                 print(f"❌ Analysis directory not found: {analysis_dir}")
+                print(f"📁 Current working directory: {os.getcwd()}")
+                print(f"📁 Project root: {project_root}")
                 return
             
-            # Find the latest analysis file
-            analysis_files = [f for f in os.listdir(analysis_dir) if f.endswith('.json')]
-            if not analysis_files:
-                print(f"❌ No analysis files found in {analysis_dir}")
-                return
-            
-            latest_file = max(analysis_files)
-            analysis_path = os.path.join(analysis_dir, latest_file)
+            # Use specific file if provided, otherwise find the latest analysis file
+            if self.specific_analysis_file and os.path.exists(self.specific_analysis_file):
+                analysis_path = self.specific_analysis_file
+                latest_file = os.path.basename(analysis_path)
+            else:
+                analysis_files = [f for f in os.listdir(analysis_dir) if f.endswith('.json')]
+                if not analysis_files:
+                    print(f"❌ No analysis files found in {analysis_dir}")
+                    return
+                
+                # Find the latest file by modification time, not alphabetically
+                latest_file = max(analysis_files, key=lambda f: os.path.getmtime(os.path.join(analysis_dir, f)))
+                analysis_path = os.path.join(analysis_dir, latest_file)
             
             print(f"📄 Loading analysis from: {latest_file}")
             
@@ -66,9 +76,30 @@ class GroqOptimizedSimpleRAG:
             # Extract chunks from analysis
             self.chunks = []
             
+            # First try to load pre-made chunks if available (new format)
+            if 'chunks' in data and data['chunks']:
+                print(f"🔍 Found pre-made chunks in new format: {len(data['chunks'])}")
+                for chunk_data in data['chunks']:
+                    self.chunks.append({
+                        'content': chunk_data.get('text', ''),
+                        'type': 'text',
+                        'page': 0,
+                        'metadata': chunk_data.get('metadata', {})
+                    })
+                print(f"✅ Loaded {len(self.chunks)} pre-made chunks")
+                
+                # Create FAISS index
+                if self.chunks:
+                    self._create_faiss_index()
+                return
+            
+            # Fallback to old format processing
             # Add PDF content pages
             pdf_content = data.get('pdf_content', {})
-            pages = pdf_content.get('pages', [])
+            content = data.get('content', {})
+            
+            # Try both old and new formats
+            pages = pdf_content.get('pages', []) or content.get('pages_data', [])
             
             print(f"🔍 Found {len(pages)} pages in PDF content")
             
@@ -176,8 +207,9 @@ class GroqOptimizedSimpleRAG:
             # Normalize embeddings for cosine similarity
             faiss.normalize_L2(embeddings)
             
-            # Add to index
-            self.faiss_index.add(embeddings.astype('float32'))
+            # Add to index - convert to float32 numpy array for FAISS
+            embeddings_f32 = embeddings.astype(np.float32)
+            self.faiss_index.add(embeddings_f32)  # type: ignore
             
             print(f"✅ FAISS index created with {len(self.chunks)} chunks")
             
@@ -196,8 +228,9 @@ class GroqOptimizedSimpleRAG:
             # Normalize for cosine similarity
             faiss.normalize_L2(query_embedding)
             
-            # Search in FAISS index
-            similarities, indices = self.faiss_index.search(query_embedding.astype('float32'), k)
+            # Search in FAISS index - convert to float32 numpy array
+            query_f32 = query_embedding.astype(np.float32)
+            similarities, indices = self.faiss_index.search(query_f32, k)  # type: ignore
             
             # Prepare results
             results = []

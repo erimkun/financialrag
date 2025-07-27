@@ -1,0 +1,125 @@
+{
+  "test_info": {
+    "created": "2025-07-27T15:33:56.932126",
+    "purpose": "Cross-browser compatibility testing",
+    "instructions": "Test on different browsers and versions"
+  },
+  "browser_matrix": {
+    "desktop": {
+      "chrome": [
+        "Latest",
+        "Version-1",
+        "Version-2"
+      ],
+      "firefox": [
+        "Latest",
+        "ESR"
+      ],
+      "safari": [
+        "Latest (macOS)"
+      ],
+      "edge": [
+        "Latest"
+      ],
+      "opera": [
+        "Latest"
+      ]
+    },
+    "mobile": {
+      "chrome_mobile": [
+        "Android Chrome"
+      ],
+      "safari_mobile": [
+        "iOS Safari"
+      ],
+      "samsung_internet": [
+        "Android Samsung"
+      ],
+      "firefox_mobile": [
+        "Android Firefox"
+      ]
+    }
+  },
+  "test_scenarios": {
+    "core_functionality": {
+      "priority": "CRITICAL",
+      "tests": [
+        {
+          "test": "Frontend loads successfully",
+          "steps": [
+            "Open http://localhost:3000",
+            "Check for JavaScript errors in console",
+            "Verify all components render"
+          ],
+          "expected": "Clean load with no errors"
+        },
+        {
+          "test": "API communication works",
+          "steps": [
+            "Test connection status indicator",
+            "Try a sample query",
+            "Check document loading"
+          ],
+          "expected": "All API calls successful"
+        },
+        {
+          "test": "File upload functionality",
+          "steps": [
+            "Navigate to Upload tab",
+            "Try drag-drop file upload",
+            "Try click-to-select upload",
+            "Monitor upload progress"
+          ],
+          "expected": "File upload works in all browsers"
+        }
+      ]
+    },
+    "visual_consistency": {
+      "priority": "HIGH",
+      "tests": [
+        {
+          "test": "CSS styling consistency",
+          "steps": [
+            "Compare layout across browsers",
+            "Check Tailwind CSS rendering",
+            "Verify color schemes",
+            "Test responsive breakpoints"
+          ],
+          "expected": "Consistent visual appearance"
+        },
+        {
+          "test": "Typography and spacing",
+          "steps": [
+            "Check font rendering",
+            "Verify text sizes and spacing",
+            "Test text readability"
+          ],
+          "expected": "Text displays correctly"
+        }
+      ]
+    },
+    "javascript_compatibility": {
+      "priority": "HIGH",
+      "tests": [
+        {
+          "test": "ES6+ features support",
+          "steps": [
+            "Check browser console for errors",
+            "Test async/await functionality",
+            "Verify module imports work"
+          ],
+          "expected": "No JavaScript compatibility issues"
+        },
+        {
+          "test": "State management (Zustand)",
+          "steps": [
+            "Test state persistence across tabs",
+            "Upload file and switch tabs",
+            "Send message and check state"
+          ],
+          "expected": "State management works consistently"
+        }
+      ]
+    }
+  }
+}

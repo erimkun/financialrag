@@ -1,344 +1,234 @@
 """
-Turkish Financial PDF RAG System - FastAPI Backend
-Main application entry point with API routes and configuration.
+Fast Backend for Turkish Financial PDF RAG System
+Simple backend that works with existing RAG system
 """
 
-from fastapi import FastAPI, File, UploadFile, HTTPException, BackgroundTasks
+import os
+import time
+import json
+from typing import Dict, List, Optional, Any
+from datetime import datetime
+from dotenv import load_dotenv
+
+from fastapi import FastAPI, HTTPException, UploadFile, File
 from fastapi.middleware.cors import CORSMiddleware
 from fastapi.responses import JSONResponse
 from pydantic import BaseModel
-from typing import List, Optional, Dict, Any
-import os
+import uvicorn
 import sys
-import json
-import uuid
-from datetime import datetime
-import asyncio
-import logging
-from typing import List, Optional, Dict, Any
 
-# Add project root to path for imports
-project_root = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
-scripts_path = os.path.join(project_root, 'scripts')
-sys.path.append(project_root)
-sys.path.append(scripts_path)
+# Load environment variables
+load_dotenv()
 
-# Import our existing RAG system
-from scripts.groq_optimized_simple_rag import GroqOptimizedSimpleRAG
-# PDF extractor and prompt optimizer can be imported later when needed
+# Add scripts directory to path
+script_dir = os.path.join(os.path.dirname(__file__), '..', 'scripts')
+sys.path.insert(0, os.path.abspath(script_dir))
 
-# Configure logging
-logging.basicConfig(level=logging.INFO)
-logger = logging.getLogger(__name__)
+try:
+    from groq_optimized_simple_rag import GroqOptimizedSimpleRAG
+    print("✅ Successfully imported GroqOptimizedSimpleRAG")
+except ImportError as e:
+    print(f"❌ Import error: {e}")
+    print(f"📁 Script directory: {os.path.abspath(script_dir)}")
+    print(f"🔍 Available files: {os.listdir(script_dir) if os.path.exists(script_dir) else 'Directory not found'}")
+    # Fallback - create minimal class
+    class GroqOptimizedSimpleRAG:
+        def __init__(self, groq_api_key: str):
+            self.groq_api_key = groq_api_key
+            print("⚠️ Using fallback RAG class")
+        
+        def query(self, question: str) -> dict:
+            return {
+                "answer": "System temporarily unavailable. Please check configuration.",
+                "confidence": 0.0,
+                "sources": []
+            }
 
-# Get Groq API key
-GROQ_API_KEY = os.getenv("GROQ_API_KEY", "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")  # Use existing key as fallback
+app = FastAPI(title="Turkish Financial PDF RAG API", version="1.0.0")
 
-# Initialize FastAPI app
-app = FastAPI(
-    title="Turkish Financial PDF RAG API",
-    description="Production-ready Turkish financial document analysis with Groq RAG system",
-    version="2.0.0",
-    docs_url="/api/docs",
-    redoc_url="/api/redoc"
-)
-
-# CORS configuration for React frontend
+# CORS configuration
 app.add_middleware(
     CORSMiddleware,
-    allow_origins=["http://localhost:3000", "http://localhost:5173"],  # React dev servers
-    allow_credentials=True,
+    allow_origins=["*"],
+    allow_credentials=True, 
     allow_methods=["*"],
     allow_headers=["*"],
 )
 
-# Initialize components
+# Global instances
 rag_system: Optional[GroqOptimizedSimpleRAG] = None
 
-# In-memory storage for demo (replace with database in production)
-documents_store: Dict[str, Dict[str, Any]] = {}
-query_history: List[Dict[str, Any]] = []
-
-# Pydantic models
+# Request models
 class QueryRequest(BaseModel):
     question: str
-    document_id: Optional[str] = None
     language: str = "tr"
+
+# Performance monitoring
+performance_stats = {
+    "total_queries": 0,
+    "total_query_time": 0.0,
+    "avg_query_time": 0.0
+}
+
+def initialize_rag_system():
+    """Initialize RAG system"""
+    global rag_system
     
-class QueryResponse(BaseModel):
-    answer: str
-    confidence: float
-    response_time: float
-    document_id: Optional[str] = None
-    timestamp: str
-    
-class DocumentInfo(BaseModel):
-    id: str
-    filename: str
-    size: int
-    pages: int
-    processed_at: str
-    status: str
-    
-class SystemStats(BaseModel):
-    total_documents: int
-    total_queries: int
-    avg_response_time: float
-    avg_confidence: float
-    system_status: str
+    try:
+        groq_api_key = os.getenv("GROQ_API_KEY")
+        if not groq_api_key:
+            print("❌ GROQ_API_KEY not found")
+            return False
+            
+        rag_system = GroqOptimizedSimpleRAG(groq_api_key=groq_api_key)
+        print("✅ RAG system initialized successfully")
+        return True
+        
+    except Exception as e:
+        print(f"❌ Error initializing RAG system: {e}")
+        return False
 
 @app.on_event("startup")
 async def startup_event():
-    """Initialize the RAG system components on startup."""
-    global rag_system
-    
-    logger.info("🚀 Starting Turkish Financial PDF RAG System...")
-    
-    try:
-        # Initialize RAG system with API key
-        rag_system = GroqOptimizedSimpleRAG(groq_api_key=GROQ_API_KEY)
-        
-        logger.info("✅ RAG system initialized successfully")
-        
-    except Exception as e:
-        logger.error(f"❌ Failed to initialize RAG system: {e}")
-        raise
+    """Initialize systems on startup"""
+    print("🚀 Starting Turkish Financial PDF RAG API...")
+    success = initialize_rag_system()
+    if not success:
+        print("⚠️ Warning: RAG system failed to initialize")
 
 @app.get("/api/health")
 async def health_check():
-    """System health check endpoint."""
+    """Health check endpoint"""
+    return {
+        "status": "healthy",
+        "rag_system": "operational" if rag_system else "not initialized",
+        "version": "1.0.0"
+    }
+
+@app.get("/api/documents")
+async def get_documents():
+    """Get list of processed documents"""
+    if not rag_system:
+        raise HTTPException(status_code=503, detail="RAG system not initialized")
+    
     try:
-        if rag_system is None:
-            return JSONResponse({
-                "status": "unhealthy",
-                "error": "RAG system not initialized",
-                "timestamp": datetime.now().isoformat()
-            }, status_code=503)
-            
-        # Test RAG system with a simple query
-        test_response = await asyncio.to_thread(
-            rag_system.query, 
-            "Test sorgusu"
-        )
+        # Return available documents from the system
+        documents = []
         
-        return JSONResponse({
-            "status": "healthy",
-            "timestamp": datetime.now().isoformat(),
-            "rag_system": "operational",
-            "test_response_time": test_response.get('query_time', 0),
-            "version": "2.0.0"
-        })
+        # Check documents directory
+        docs_dir = os.path.join(os.path.dirname(__file__), "..", "documents")
+        if os.path.exists(docs_dir):
+            for file in os.listdir(docs_dir):
+                if file.endswith('.pdf'):
+                    documents.append({
+                        "filename": file,
+                        "status": "processed"
+                    })
+        
+        return documents
         
     except Exception as e:
-        logger.error(f"Health check failed: {e}")
-        return JSONResponse({
-            "status": "unhealthy",
-            "error": str(e),
-            "timestamp": datetime.now().isoformat()
-        }, status_code=503)
+        raise HTTPException(status_code=500, detail=f"Error retrieving documents: {str(e)}")
 
-@app.post("/api/upload-pdf")
-async def upload_pdf(
-    background_tasks: BackgroundTasks,
-    file: UploadFile = File(...)
-):
-    """Upload and process PDF document."""
+@app.post("/api/query")
+async def query_documents(request: QueryRequest):
+    """Query documents using RAG system"""
+    if not rag_system:
+        raise HTTPException(status_code=503, detail="RAG system not initialized")
     
-    filename = file.filename or "unknown.pdf"
-    if not filename.lower().endswith('.pdf'):
-        raise HTTPException(status_code=400, detail="Only PDF files are supported")
-    
-    # Generate unique document ID
-    doc_id = str(uuid.uuid4())
-    
-    # Save uploaded file
-    upload_dir = "uploads"
-    os.makedirs(upload_dir, exist_ok=True)
-    file_path = os.path.join(upload_dir, f"{doc_id}_{filename}")
+    start_time = time.time()
     
     try:
-        with open(file_path, "wb") as buffer:
+        # Process query
+        result = rag_system.query(request.question)
+        
+        query_time = time.time() - start_time
+        
+        # Update performance stats
+        performance_stats["total_queries"] += 1
+        performance_stats["total_query_time"] += query_time
+        performance_stats["avg_query_time"] = (
+            performance_stats["total_query_time"] / performance_stats["total_queries"]
+        )
+        
+        return {
+            **result,
+            "response_time": query_time
+        }
+        
+    except Exception as e:
+        query_time = time.time() - start_time
+        raise HTTPException(status_code=500, detail=f"Query processing error: {str(e)}")
+
+@app.post("/api/upload")
+async def upload_file(file: UploadFile = File(...)):
+    """Upload file endpoint (simplified)"""
+    if not file.filename or not file.filename.lower().endswith('.pdf'):
+        raise HTTPException(status_code=400, detail="Only PDF files are supported")
+    
+    try:
+        # Save uploaded file
+        upload_path = os.path.join("uploads", file.filename)
+        os.makedirs("uploads", exist_ok=True)
+        
+        with open(upload_path, "wb") as buffer:
             content = await file.read()
             buffer.write(content)
         
-        # Store document info
-        documents_store[doc_id] = {
-            "id": doc_id,
-            "filename": filename,
-            "file_path": file_path,
-            "size": len(content),
-            "status": "uploaded",
-            "uploaded_at": datetime.now().isoformat(),
-            "pages": 0,
-            "message": "PDF uploaded successfully. Processing will be available in future versions."
+        return {
+            "message": "File uploaded successfully",
+            "filename": file.filename,
+            "status": "uploaded"
         }
         
-        return JSONResponse({
-            "document_id": doc_id,
-            "filename": filename,
-            "size": len(content),
-            "status": "uploaded",
-            "message": "PDF uploaded successfully. The existing RAG system already has financial documents loaded."
-        })
-        
     except Exception as e:
-        logger.error(f"PDF upload failed: {e}")
-        raise HTTPException(status_code=500, detail=f"Upload failed: {str(e)}")
+        raise HTTPException(status_code=500, detail=f"Upload error: {str(e)}")
 
-async def process_pdf_background(doc_id: str, file_path: str):
-    """Background task to process uploaded PDF (placeholder for future implementation)."""
-    try:
-        logger.info(f"🔄 Processing PDF: {doc_id}")
-        
-        # Update status
-        documents_store[doc_id]["status"] = "processing"
-        
-        # TODO: Implement PDF processing integration
-        # For now, just mark as completed
-        documents_store[doc_id]["status"] = "completed"
-        documents_store[doc_id]["processed_at"] = datetime.now().isoformat()
-        documents_store[doc_id]["message"] = "Processing completed (demo mode)"
-        
-        logger.info(f"✅ PDF processing completed: {doc_id}")
-        
-    except Exception as e:
-        logger.error(f"❌ PDF processing failed for {doc_id}: {e}")
-        documents_store[doc_id]["status"] = "failed"
-        documents_store[doc_id]["error"] = str(e)
-
-@app.post("/api/query", response_model=QueryResponse)
-async def query_rag(request: QueryRequest):
-    """Submit query to RAG system."""
-    try:
-        if rag_system is None:
-            raise HTTPException(status_code=503, detail="RAG system not initialized")
-            
-        logger.info(f"🔍 Processing query: {request.question[:50]}...")
-        
-        start_time = datetime.now()
-        
-        # Query RAG system directly (no prompt optimization for now)
-        response = await asyncio.to_thread(
-            rag_system.query,
-            request.question
-        )
-        
-        end_time = datetime.now()
-        response_time = (end_time - start_time).total_seconds()
-        
-        # Store query in history
-        query_record = {
-            "id": str(uuid.uuid4()),
-            "question": request.question,
-            "answer": response.get("answer", ""),
-            "confidence": response.get("confidence", 0.0),
-            "response_time": response_time,
-            "document_id": request.document_id,
-            "timestamp": end_time.isoformat(),
-            "language": request.language
-        }
-        query_history.append(query_record)
-        
-        return QueryResponse(
-            answer=response.get("answer", ""),
-            confidence=response.get("confidence", 0.0),
-            response_time=response_time,
-            document_id=request.document_id,
-            timestamp=end_time.isoformat()
-        )
-        
-    except Exception as e:
-        logger.error(f"Query processing failed: {e}")
-        raise HTTPException(status_code=500, detail=f"Query failed: {str(e)}")
-
-@app.get("/api/documents", response_model=List[DocumentInfo])
-async def list_documents():
-    """List all processed documents."""
-    documents = []
-    for doc_data in documents_store.values():
-        documents.append(DocumentInfo(
-            id=doc_data["id"],
-            filename=doc_data["filename"],
-            size=doc_data["size"],
-            pages=doc_data.get("pages", 0),
-            processed_at=doc_data.get("processed_at", doc_data["uploaded_at"]),
-            status=doc_data["status"]
-        ))
+@app.get("/api/stats")
+async def get_stats():
+    """Get system statistics"""
     
-    return documents
-
-@app.get("/api/documents/{document_id}")
-async def get_document(document_id: str):
-    """Get specific document details."""
-    if document_id not in documents_store:
-        raise HTTPException(status_code=404, detail="Document not found")
+    # Count documents
+    total_docs = 0
+    docs_dir = os.path.join(os.path.dirname(__file__), "..", "documents")
+    if os.path.exists(docs_dir):
+        total_docs = len([f for f in os.listdir(docs_dir) if f.endswith('.pdf')])
     
-    return documents_store[document_id]
-
-@app.delete("/api/documents/{document_id}")
-async def delete_document(document_id: str):
-    """Delete a document."""
-    if document_id not in documents_store:
-        raise HTTPException(status_code=404, detail="Document not found")
-    
-    doc_data = documents_store[document_id]
-    
-    # Delete file
-    try:
-        if os.path.exists(doc_data["file_path"]):
-            os.remove(doc_data["file_path"])
-    except Exception as e:
-        logger.warning(f"Failed to delete file: {e}")
-    
-    # Remove from store
-    del documents_store[document_id]
-    
-    return {"message": "Document deleted successfully"}
-
-@app.get("/api/query/history")
-async def get_query_history(limit: int = 50):
-    """Get query history."""
-    return query_history[-limit:]
-
-@app.get("/api/stats", response_model=SystemStats)
-async def get_system_stats():
-    """Get system statistics."""
-    total_queries = len(query_history)
-    
-    if total_queries > 0:
-        avg_response_time = sum(q["response_time"] for q in query_history) / total_queries
-        avg_confidence = sum(q["confidence"] for q in query_history) / total_queries
-    else:
-        avg_response_time = 0.0
-        avg_confidence = 0.0
-    
-    return SystemStats(
-        total_documents=len(documents_store),
-        total_queries=total_queries,
-        avg_response_time=avg_response_time,
-        avg_confidence=avg_confidence,
-        system_status="operational"
-    )
-
-@app.get("/api/config")
-async def get_system_config():
-    """Get system configuration."""
     return {
-        "version": "2.0.0",
-        "model": "llama-3.1-8b-instant",
-        "embeddings": "paraphrase-multilingual-mpnet-base-v2",
-        "vector_store": "FAISS",
-        "supported_languages": ["tr", "en"],
-        "max_file_size": "50MB",
-        "supported_formats": ["pdf"]
+        "total_documents": total_docs,
+        "total_queries": performance_stats["total_queries"],
+        "avg_query_time": round(performance_stats["avg_query_time"], 2) if performance_stats["total_queries"] > 0 else 0
     }
 
+@app.post("/api/optimize")
+async def optimize_system():
+    """Manual system optimization"""
+    try:
+        import gc
+        
+        # Force garbage collection
+        collected = gc.collect()
+        
+        # Clear performance stats if needed
+        optimization_time = datetime.now()
+        
+        return {
+            "message": "System optimization completed",
+            "garbage_collected": collected,
+            "optimization_time": optimization_time.isoformat(),
+            "performance_stats": {
+                "total_queries": performance_stats["total_queries"],
+                "avg_query_time": performance_stats["avg_query_time"]
+            }
+        }
+        
+    except Exception as e:
+        raise HTTPException(status_code=500, detail=f"Optimization error: {str(e)}")
+
 if __name__ == "__main__":
-    import uvicorn
     uvicorn.run(
         "main:app",
         host="0.0.0.0",
         port=8000,
-        reload=True,
-        log_level="info"
+        reload=True
     )

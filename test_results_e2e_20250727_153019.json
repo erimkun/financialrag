@@ -1,0 +1,47 @@
+{
+  "timestamp": "20250727_153019",
+  "success_rate": 100.0,
+  "results": {
+    "health": true,
+    "documents": true,
+    "upload": true,
+    "stats": true,
+    "queries": [
+      {
+        "query": "BIST-100 için teknik yorum nedir?",
+        "success": true,
+        "response_time": 3.514432191848755,
+        "confidence": 0.5784364443024,
+        "answer_length": 1395
+      },
+      {
+        "query": "Hangi hisse senetleri en yüksek getiri sağladı?",
+        "success": true,
+        "response_time": 2.784843683242798,
+        "confidence": 0.5453972413887581,
+        "answer_length": 674
+      },
+      {
+        "query": "Banka hisseleri nasıl performans gösterdi?",
+        "success": true,
+        "response_time": 3.080842971801758,
+        "confidence": 0.5557776566346487,
+        "answer_length": 938
+      },
+      {
+        "query": "VİOP kontratları hakkında ne söyleniyor?",
+        "success": true,
+        "response_time": 3.163323163986206,
+        "confidence": 0.5074655029674372,
+        "answer_length": 966
+      },
+      {
+        "query": "Ekonomik göstergeler nasıl?",
+        "success": true,
+        "response_time": 3.998419761657715,
+        "confidence": 0.5924309555192789,
+        "answer_length": 1490
+      }
+    ]
+  }
+}
