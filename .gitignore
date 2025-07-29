@@ -7,8 +7,9 @@ dist/
 build/
 
 # environment variables
+
 .env
-.env.*
+
 
 # IDE/editor settings
 .vscode/
